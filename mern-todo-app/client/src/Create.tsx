@@ -8,8 +8,8 @@ function Create(){
             <div className="form_wrapper">
                 <TextField 
                     sx={{ 
-                        // background: 'red',
-                        width: '90%'
+                        background: 'white',
+                        width: '90%'    
                     }}
                     id="filled-basic" 
                     label="Enter the todo item" 

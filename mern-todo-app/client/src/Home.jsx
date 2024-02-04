@@ -17,9 +17,10 @@ function Home(){
                  }}>
                     {/* heading */}
                     <Typography sx={{ 
+                        color: 'white',
                         fontSize: 25
                      }}>
-                        Dumtm Dev Test List</Typography>
+                        Dummy Dev Test List</Typography>
 
                     {/* form comp */}
                     <Box sx={{
@@ -36,6 +37,7 @@ function Home(){
                         {
                             todos.length === 0 ?
                             <Typography sx={{
+                                color: 'white',
                                 fontSize: 18
                             }}>
                                 No items found
