@@ -3,24 +3,20 @@ const mongoose = require('mongoose');
 
 async function connectDB() {
   const connectionString = 'mongodb://localhost:27017';
+  const dbName = 'todo_app'
   try {
     const client = new mongoClient(connectionString,
       { useNewUrlParser: true, useUnifiedTopology: true });
 
-    try {
-      await client.connect();
+    await client.connect();
 
-      const db = client.db("todo_app");
+    const db = client.db(dbName);
 
-      console.log('Connected to MongoDB');
-      return db;
-    } catch (err) {
-      console.error('Error connecting to MongoDB', err);
-      throw err;
-    }
+    console.log('Connected to MongoDB');
+    return db;
+
   } catch (error) {
-    console.error(error);
-    return "!passed";
+    throw error;
   }
 }
 
