@@ -11,6 +11,7 @@ function Create() {
             console.log('Found an empty entrty !');
         }
         else {
+            console.log('Entry entered !');
             axios.post('http://localhost:3001/add-tasks', { task: task })
                 .then(result => { console.log(result) })
                 .catch(err => { console.error(err) })
