@@ -1,13 +1,18 @@
-const { connectDB } = require('./connectionModel');
+const {
+    connectMongodbClient,
+    abortMongodbClient } = require('./connectionModel');
+require('dotenv').config({ path: '../.env' });
 
 async function insertTodos(todoObj) {
-    const db = await connectDB();
+    const db = await connectMongodbClient();
+    const collectionName = process.env.COLLECTION_NAME;
 
-    if (db) {
-        const collection = db.collection('todos');
+    try {
+        const collection = db.collection(collectionName);
         collection.insertOne(todoObj, function (err, result) {
             if (!err) {
                 console.log("InsertTodos Model : Result - " + result);
+
                 return true;
             }
             else {
@@ -15,10 +20,11 @@ async function insertTodos(todoObj) {
                 return false;
             }
         });
-    }
-    else {
-        console.log("InsertTodos Model : Databse Error !")
+    } catch (error) {
+        console.log("InsertTodos Model : Databse/Collection Error - " + error)
         return false;
+    } finally {
+        await abortMongodbClient();
     }
 }
 

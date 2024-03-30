@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config({ path: '../.env' });
+// models
 const { insertTodos } = require('../Model/insertTodosModel');
+const { fetchTodos } = require('../Model/fetchTodosModel');
 
 const app = express();
 app.use(cors());
@@ -13,7 +15,7 @@ app.listen(PORT, async () => {
 });
 
 // default end point
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(require('path').resolve(__dirname, '..') + "/public/index.html");
 });
 
@@ -26,17 +28,21 @@ app.post('/add-tasks', async (req, res) => {
             author: "vihan",
             name: task
         }
-        insertTodos (todoObj);
-        return true;
+        const result = insertTodos(todoObj);
+        if (result) { return true; }
+        else { return false; }
     }
     else {
         console.log("Universal Controller : Task not recieved - " + task);
         return false;
     }
-    
+
 });
 
 // fetch all todos
-// app.get('/get-todos', async (req, res) => {
-
-// });
+app.get('/get-todos', async (req, res) => {
+    const result = await fetchTodos();
+    if (result) {
+        res.send(result)
+    }
+});

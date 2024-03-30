@@ -1,17 +1,15 @@
 const mongoClient = require('mongodb').MongoClient;
 require('dotenv').config({path: '../.env'});
 
-async function connectDB() {
-  const connectionString = 'mongodb://localhost:27017';
-  const dbName = process.env.DB_NAME;
+const connectionString = process.env.CONNECTION_STRING;
+const dbName = process.env.DB_NAME;
+const client = new mongoClient(connectionString,
+  { useNewUrlParser: true, useUnifiedTopology: true });
+
+async function connectMongodbClient() {
   try {
-    const client = new mongoClient(connectionString,
-      { useNewUrlParser: true, useUnifiedTopology: true });
-
     await client.connect();
-
     const db = client.db(dbName);
-
     console.log('Connected to MongoDB');
     return db;
 
@@ -20,4 +18,8 @@ async function connectDB() {
   }
 }
 
-module.exports = { connectDB }
+async function abortMongodbClient() {
+  // await client.close();
+}
+
+module.exports = { connectMongodbClient, abortMongodbClient }
