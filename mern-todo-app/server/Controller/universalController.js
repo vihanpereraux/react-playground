@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
-dotenv.config();
-const { connectDB } = require('../Model/connectionModel');
+require('dotenv').config({ path: '../.env' });
+const { insertTodos } = require('../Model/insertTodosModel');
 
 const app = express();
 app.use(cors());
@@ -21,24 +20,23 @@ app.get("/", (req, res) => {
 // post todo end point
 app.post('/add-tasks', async (req, res) => {
     const task = req.body.task;
-    
-    console.log("Recieved task is : " + task);
-    
-    const db = await connectDB();
-
-    if (db) {
+    if (task) {
+        console.log("Universal Controller : Task recieved - " + task);
         const todoObj = {
             author: "vihan",
             name: task
         }
-        const collection = db.collection('todos');
-        collection.insertOne(todoObj, (err, result) => {
-            if(err) throw err;
-            console.log(result);            
-        })
-        console.log(task + " : " + "sent to the db !");
+        insertTodos (todoObj);
+        return true;
     }
-    else { 
-        console.log("Task not sent due to a db failure !");
+    else {
+        console.log("Universal Controller : Task not recieved - " + task);
+        return false;
     }
+    
 });
+
+// fetch all todos
+// app.get('/get-todos', async (req, res) => {
+
+// });

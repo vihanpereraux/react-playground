@@ -1,9 +1,9 @@
 const mongoClient = require('mongodb').MongoClient;
-const mongoose = require('mongoose');
+require('dotenv').config({path: '../.env'});
 
 async function connectDB() {
   const connectionString = 'mongodb://localhost:27017';
-  const dbName = 'todo_app'
+  const dbName = process.env.DB_NAME;
   try {
     const client = new mongoClient(connectionString,
       { useNewUrlParser: true, useUnifiedTopology: true });
