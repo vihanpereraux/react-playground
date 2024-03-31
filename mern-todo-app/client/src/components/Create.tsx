@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from '@mui/material';
 import axios from 'axios';
-import './styles/Styles.css';
+import '../styles/Styles.css';
 
 function Create() {
     const [task, setTask] = useState("");
