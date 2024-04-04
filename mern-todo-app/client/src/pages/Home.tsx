@@ -4,6 +4,7 @@ import { Container, Typography, Box } from "@mui/material";
 // components
 import Create from "../components/Create";
 import NavBar from "../components/Nav";
+import TodoTable from "../components/Table";
 
 function Home() {
   const [todos, setTodos] = useState([]);
@@ -31,12 +32,15 @@ function Home() {
 
         {/* rending the fetched list */}
         <Box sx={{ mt: 5 }}>
-          {todos.length === 0 ? (
+          {todos.length != 0 ? (
             <Typography sx={{ color: "white", fontSize: 18 }}>
               No items found
             </Typography>
           ) : (
-            todos.map((todo) => <div key={todo}>{todo}</div>)
+            // todos.map((todo) => <div key={todo}>{todo}</div>)
+
+            // table componnets appears here
+            <TodoTable></TodoTable>
           )}
         </Box>
 
