@@ -12,7 +12,6 @@ async function insertTodos(todoObj) {
         collection.insertOne(todoObj, function (err, result) {
             if (!err) {
                 console.log("InsertTodos Model : Result - " + result);
-
                 return true;
             }
             else {

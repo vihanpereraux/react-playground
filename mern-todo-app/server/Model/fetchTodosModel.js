@@ -1,11 +1,9 @@
-const {
-    connectMongodbClient,
-    abortMongodbClient } = require('./connectionModel');
+const { connectMongodbClient, abortMongodbClient } = require('./connectionModel');
 require('dotenv').config({ path: './env' });
 
 async function fetchTodos() {
     let recivedTodos = [];
-    
+
     const collectionName = process.env.COLLECTION_NAME;
     const db = await connectMongodbClient();
     const collection = db.collection(collectionName);

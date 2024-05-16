@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
+
 // models
 const { insertTodos } = require('../Model/insertTodosModel');
 const { fetchTodos } = require('../Model/fetchTodosModel');
