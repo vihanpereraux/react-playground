@@ -1,13 +1,9 @@
-/* tailwind directives */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 body {
-    background: black !important;
+    height: 100vh !important;
+    width: 100%;
+    background: black;
 }
 
 .form_wrapper {
     display: flex;
-    /* background: lightblue; */
 }

@@ -6,15 +6,16 @@ import "../styles/Styles.css";
 function Create() {
   const [task, setTask] = useState("");
 
-  const addItem = () => {
+  const addItem = async () => {
     if (task.length === 0) {
+      location.reload();
       console.log("Found an empty entrty !");
     } else {
-      console.log("Entry entered !");
-      axios
-        .post("http://localhost:3001/add-tasks", { task: task })
-        .then((result) => {
-          console.log(result);
+      axios.post("http://localhost:3001/add-tasks?task=" + task)
+        .then(response => {
+          console.log("Entry entered !");
+          // console.log(result);
+          location.reload();
         })
         .catch((err) => {
           console.error(err);
