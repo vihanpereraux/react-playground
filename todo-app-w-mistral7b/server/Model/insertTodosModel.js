@@ -1,7 +1,6 @@
 require('dotenv').config({ path: '../.env' });
 
 async function insertTodos(db, todoObj) {
-    // const db = await connectMongodbClient();
     const collectionName = process.env.COLLECTION_NAME;
 
     try {

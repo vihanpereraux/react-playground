@@ -30,11 +30,10 @@ function TodoTable() {
     try {
       const response = await axios.delete("http://localhost:3001/delete-todo?id=" + id)
       if (response) {
-        console.log("item deleted !");
+        location.reload();
       }
-      // console.log('Delete button clicked !' + id);
     } catch (error) {
-      
+      console.error(error);
     }
   }
 
