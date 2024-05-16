@@ -21,7 +21,13 @@ async function connectMongodbClient() {
 }
 
 async function abortMongodbClient() {
-  // await client.close();
+  // try {
+  //   await client.close();
+  //   return true;
+  // } catch (error) {
+  //   console.error(error);
+  //   return false;
+  // }
 }
 
 module.exports = { connectMongodbClient, abortMongodbClient };

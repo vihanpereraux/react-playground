@@ -1,11 +1,9 @@
-const { connectMongodbClient, abortMongodbClient } = require('./connectionModel');
 require('dotenv').config({ path: './env' });
 
-async function fetchTodos() {
+async function fetchTodos(db) {
     let recivedTodos = [];
 
     const collectionName = process.env.COLLECTION_NAME;
-    const db = await connectMongodbClient();
     const collection = db.collection(collectionName);
 
     try {
@@ -16,7 +14,7 @@ async function fetchTodos() {
         console.log("InsertTodos Model : Databse/Collection Error - " + error)
         return false;
     } finally {
-        await abortMongodbClient();
+        // await abortMongodbClient();
     }
 }
 
